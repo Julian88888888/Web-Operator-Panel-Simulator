@@ -3,24 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мій симулятор</title>
-    <style>
-        body {
-            background-color: #2b2b2b; /* Темний фон, як у пульта */
-            color: #00ff00; /* Зелений текст, як на екрані ЧПК */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: monospace, sans-serif;
-            font-size: 50px;
-        }
-    </style>
+    <title>Симулятор пульта Fanuc</title>
+    
+    <!-- Підключаємо файл зі стилями -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <h1>Женя</h1>
+    <div class="panel">
+        <!-- Екран (дисплей) -->
+        <div class="screen">
+            <div class="screen-header">FANUC Series 31i-MODEL B</div>
+            <div class="screen-content">
+                X: <span id="val-X">0.000</span><br>
+                Y: <span id="val-Y">0.000</span><br>
+                Z: <span id="val-Z">0.000</span>
+            </div>
+        </div>
 
+        <!-- Блок з кнопками (сітка) -->
+        <div class="buttons">
+            <!-- Вісь Y (Вгору/Вниз) -->
+            <button onclick="moveAxis('Y', 1)">Y + ↑</button>
+            <button onclick="moveAxis('Y', -1)">Y - ↓</button>
+            
+            <!-- Вісь X (Вліво/Вправо) -->
+            <button onclick="moveAxis('X', -1)">X - ←</button>
+            <button onclick="moveAxis('X', 1)">X + →</button>
+            
+            <!-- Вісь Z -->
+            <button onclick="moveAxis('Z', 1)">Z + ↑</button>
+            <button onclick="moveAxis('Z', -1)">Z - ↓</button>
+            
+            <!-- Кнопка скидання -->
+            <button class="btn-reset" onclick="resetValues()">RESET</button>
+        </div>
+    </div>
+
+    <!-- Підключаємо файл з логікою (JavaScript) -->
+    <script src="script.js"></script>
 </body>
 </html>
