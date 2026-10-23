@@ -3,44 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Симулятор пульта Fanuc</title>
-    
-    <!-- Підключаємо файл зі стилями -->
+    <title>CNC Emulator</title>
+    <!-- Підключення зовнішнього файлу стилів -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="panel">
-        <!-- Екран (дисплей) -->
-        <div class="screen">
-            <div class="screen-header">FANUC Series 31i-MODEL B</div>
-            <div class="screen-content">
-                X: <span id="val-X">0.000</span><br>
-                Y: <span id="val-Y">0.000</span><br>
-                Z: <span id="val-Z">0.000</span>
+    <div class="screen">
+        <!-- Верхній рядок -->
+        <div class="header">
+            <div class="title">ФАКТ. ПОЗИЦІЯ<br>ПРОГРАМА DL1A~</div>
+            <div class="program-number" id="current-prog">01001 N00600</div>
+        </div>
+
+        <!-- Ліва панель -->
+        <div class="left-panel">
+            <div class="coordinates">
+                <div class="axis">X</div> <div class="value" id="coord-x">17.000</div>
+                <div class="axis">Y</div> <div class="value" id="coord-y">87.580</div>
+                <div class="axis">Z</div> <div class="value" id="coord-z">-11.867</div>
+                <div class="axis">B</div> <div class="value" id="coord-b">0.000</div>
+            </div>
+            <div class="modal">
+                <div>G01</div> <div>G80</div> <div>G15</div> <div>F 338 M 8</div>
+                <div>G17</div> <div>G98</div> <div>G40.1</div> <div>H 38 M</div>
+                <div>G91</div> <div>G50</div> <div>G25</div> <div>D M</div>
+                <div>G22</div> <div>G67</div> <div>G160</div> <div>HD.T 38</div>
+                <div>G94</div> <div>G97</div> <div>G13.1</div> <div>S 676 NX.T 0</div>
+                <div>G21</div> <div>G59</div> <div>G50.1</div> <div>ПОВТОР 0/0</div>
             </div>
         </div>
 
-        <!-- Блок з кнопками (сітка) -->
-        <div class="buttons">
-            <!-- Вісь Y (Вгору/Вниз) -->
-            <button onclick="moveAxis('Y', 1)">Y + ↑</button>
-            <button onclick="moveAxis('Y', -1)">Y - ↓</button>
+        <!-- Права панель -->
+        <div class="right-panel">
+            <div class="status-bar">
+                <div>F</div>
+                <div>338 мм/мин</div>
+            </div>
+            <div class="status-bar sub-status">
+                <div class="text-dark">ДЕТ. ПРОЧЕТ 0 DRN F 1500</div>
+                <div>ВР. ФУНК. 832H31M.0S</div>
+            </div>
+            <div class="program-label">прогр.</div>
             
-            <!-- Вісь X (Вліво/Вправо) -->
-            <button onclick="moveAxis('X', -1)">X - ←</button>
-            <button onclick="moveAxis('X', 1)">X + →</button>
-            
-            <!-- Вісь Z -->
-            <button onclick="moveAxis('Z', 1)">Z + ↑</button>
-            <button onclick="moveAxis('Z', -1)">Z - ↓</button>
-            
-            <!-- Кнопка скидання -->
-            <button class="btn-reset" onclick="resetValues()">RESET</button>
+            <div class="program-list" id="program-container">
+                <div class="line"><span class="line-number">N00600</span> Y1.781 ;</div>
+                <div class="line"><span class="line-number">N00601</span> Y1.781 ;</div>
+                <div class="line"><span class="line-number">N00602</span> Y1.781 ;</div>
+                <div class="line"><span class="line-number">N00603</span> G03 X-7.437 Y8.863 Z0.250 I-9.000 J0.0 ;</div>
+                <div class="line"><span class="line-number">N00604</span> X-1.563 Y0.137 I-1.563 J-8.863 F2500. ;</div>
+                <div class="line"><span class="line-number">N00605</span> X.685Y-.665;</div>
+                <div class="line"><span class="line-number">N00606</span> X.741Y-.643;</div>
+                <div class="line"><span class="line-number">N00607</span> X.792Y-.617;</div>
+                <div class="line"><span class="line-number">N00608</span> X.842Y-.589;</div>
+                <div class="line"><span class="line-number">N00609</span> X.888Y-.557;</div>
+                <div class="line"><span class="line-number">N00610</span> X.934Y-.523;</div>
+            </div>
+        </div>
+
+        <!-- Нижнє меню -->
+        <div class="footer">
+            <div class="footer-btn">АБСОЛЮТ</div>
+            <div class="footer-btn">ВІДНОСН</div>
+            <div class="footer-btn">ВСЕ</div>
+            <div class="footer-btn">МОНІТОР</div>
+            <div class="footer-btn">ПРОГРАМА</div>
+            <div class="footer-btn">ПАПКА</div>
+            <div class="footer-btn">СЛІДУЮЧИЙ</div>
+            <div class="footer-btn">ПЕРЕВІРКА</div>
+            <div class="time-box" id="clock">14:42:26</div>
         </div>
     </div>
 
-    <!-- Підключаємо файл з логікою (JavaScript) -->
+    <!-- Підключення зовнішнього файлу скриптів -->
     <script src="script.js"></script>
 </body>
 </html>
