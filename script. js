@@ -1,0 +1,61 @@
+// 1. Годинник у нижньому правому куті
+function updateClock() {
+    const now = new Date();
+    // Форматуємо час у формат HH:MM:SS
+    const timeString = now.toLocaleTimeString('uk-UA', { hour12: false });
+    document.getElementById('clock').textContent = timeString;
+}
+
+// Оновлюємо час кожну секунду
+setInterval(updateClock, 1000);
+updateClock(); // Викликаємо одразу при завантаженні
+
+
+// 2. Імітація руху інструменту (зміна координат)
+let x = 17.000;
+let y = 87.580;
+let z = -11.867;
+
+setInterval(() => {
+    // Додаємо/віднімаємо випадкове мікро-значення, щоб цифри "бігали"
+    x += (Math.random() - 0.5) * 0.05;
+    y += (Math.random() - 0.5) * 0.05;
+    z += (Math.random() - 0.5) * 0.02;
+
+    // Оновлюємо текст на екрані, залишаючи 3 знаки після коми
+    document.getElementById('coord-x').textContent = x.toFixed(3);
+    document.getElementById('coord-y').textContent = y.toFixed(3);
+    document.getElementById('coord-z').textContent = z.toFixed(3);
+}, 100); // Оновлення кожні 100 мілісекунд
+
+
+// 3. Імітація виконання програми (підсвічування рядків)
+const lines = document.querySelectorAll('.program-list .line');
+let currentLineIndex = 3; // Починаємо з 4-го рядка (індекс 3), як на фото
+
+function highlightLine() {
+    // Спочатку знімаємо виділення (клас active) з усіх рядків
+    lines.forEach(line => line.classList.remove('active'));
+    
+    // Якщо такий рядок існує, додаємо йому клас active
+    if (lines[currentLineIndex]) {
+        lines[currentLineIndex].classList.add('active');
+        
+        // Автоматично прокручуємо список до активного рядка
+        lines[currentLineIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    // Переходимо до наступного рядка
+    currentLineIndex++;
+    
+    // Якщо дійшли до кінця програми, починаємо спочатку
+    if (currentLineIndex >= lines.length) {
+        currentLineIndex = 0;
+    }
+}
+
+// Запускаємо імітацію виконання: перехід на новий рядок кожні 1.5 секунди
+setInterval(highlightLine, 1500);
+
+// Ініціалізація першого виділення при завантаженні сторінки
+highlightLine();
