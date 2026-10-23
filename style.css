@@ -1,0 +1,101 @@
+/* Загальні налаштування сторінки */
+body {
+    background-color: #1a1a1a; /* Дуже темний сірий фон навколо пульта */
+    color: white;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    user-select: none; /* Забороняємо виділяти текст при швидкому натисканні */
+}
+
+/* Корпус пульта */
+.panel {
+    background-color: #2b2b2b; /* Темно-сірий колір корпусу */
+    padding: 20px;
+    border-radius: 12px;
+    border: 2px solid #444;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8), inset 0 0 10px rgba(0,0,0,0.5);
+    width: 320px;
+}
+
+/* Екран (дисплей) */
+.screen {
+    background-color: #050505; /* Майже чорний фон екрану */
+    color: #00ff00; /* Яскраво-зелений текст */
+    border: 3px solid #333;
+    padding: 12px;
+    margin-bottom: 25px;
+    font-family: 'Courier New', Courier, monospace; /* Моноширинний шрифт для схожості з ЧПК */
+    font-size: 18px;
+    border-radius: 4px;
+    box-shadow: inset 0 0 15px rgba(0, 255, 0, 0.1); /* Легке зелене світіння зсередини */
+}
+
+.screen-header {
+    border-bottom: 1px dashed #333;
+    padding-bottom: 8px;
+    margin-bottom: 10px;
+    font-size: 11px;
+    color: #00aa00; /* Трохи тьмяніший зелений для заголовка */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.screen-content {
+    line-height: 1.5;
+}
+
+/* Блок з кнопками (сітка) */
+.buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Дві колонки */
+    gap: 12px; /* Відстань між кнопками */
+}
+
+/* Загальний стиль для всіх кнопок */
+button {
+    background-color: #e0e0e0; /* Світло-сірий, як пластикові кнопки */
+    color: #111;
+    border: 2px solid #888;
+    padding: 15px 10px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 6px;
+    box-shadow: 0 5px #555; /* Тінь, що створює об'єм */
+    transition: all 0.05s ease; /* Швидка анімація */
+    font-family: Arial, sans-serif;
+}
+
+/* Ефект при наведенні (для комп'ютерів) */
+button:hover {
+    background-color: #f0f0f0;
+}
+
+/* Ефект при натисканні (кнопка "втоплюється") */
+button:active {
+    box-shadow: 0 1px #555; /* Тінь зменшується */
+    transform: translateY(4px); /* Кнопка зсувається вниз */
+    background-color: #ccc;
+}
+
+/* Спеціальний стиль для кнопки RESET (червона) */
+.btn-reset {
+    grid-column: span 2; /* Займає обидві колонки */
+    background-color: #cc0000; /* Червоний */
+    color: white;
+    border-color: #800000;
+    box-shadow: 0 5px #500000;
+    margin-top: 10px;
+}
+
+.btn-reset:hover {
+    background-color: #e60000;
+}
+
+.btn-reset:active {
+    box-shadow: 0 1px #500000;
+}
